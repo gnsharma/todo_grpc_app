@@ -13,19 +13,19 @@ _ONE_DAY_IN_SECONDS = 60 * 60 * 24
 class TodoServicer(todo_pb2_grpc.TodoServiceServicer):
 
     def CreateUser(self, request, context):
-        user = User(id=request.id, name=request.name, email=request.name)
-        user_pb2 = User_pb2(id=request.id, name=request.name, email=request.email)
+        user = User(name=request.name, email=request.email)
 
         try:
             session.add(user)
             session.commit()
+            request.id = user.id
             action_status = todo_pb2.ActionStatus(status=1)
         except:
             print("Not able to create User")
             session.rollback()
             action_status = todo_pb2.ActionStatus(status=2)
         finally:
-            return todo_pb2.CreateUserResponse(status=action_status, user=user_pb2)
+            return todo_pb2.CreateUserResponse(status=action_status, user=request)
 
     def GetUser(self, request, context):
         user = session.query(User).filter(User.id == request.id).first()
@@ -39,19 +39,19 @@ class TodoServicer(todo_pb2_grpc.TodoServiceServicer):
         return user_pb2
 
     def CreateTodo(self, request, context):
-        todo = Todo(id=request.id, details=request.details, user_id=request.user_id, status=request.status)
-        todo_pb = todo_pb2.Todo(id=request.id, details=request.details, user_id=request.user_id, status=request.status)
+        todo = Todo(details=request.details, user_id=request.user_id, status=request.status)
 
         try:
             session.add(todo)
             session.commit()
+            request.id = todo.id
             action_status = todo_pb2.ActionStatus(status=1)
         except:
             print("Not able to create Todo")
             session.rollback()
             action_status = todo_pb2.ActionStatus(status=2)
         finally:
-            return todo_pb2.CreateTodoResponse(status=action_status, todo=todo_pb)
+            return todo_pb2.CreateTodoResponse(status=action_status, todo=request)
 
     def GetTodo(self, request, context):
         todo = session.query(Todo).filter(Todo.id == request.id).first()
@@ -104,7 +104,6 @@ class TodoServicer(todo_pb2_grpc.TodoServiceServicer):
 
 
 if __name__ == '__main__':
-    session.rollback()
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     todo_pb2_grpc.add_TodoServiceServicer_to_server(TodoServicer(), server)
     print("Starting server. Listening on port 50051.")
