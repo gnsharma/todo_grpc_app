@@ -1,0 +1,24 @@
+# Byte-compiled / optimized / DLL files
+*__pycache__*
+*.py[cod]
+*.DS_Store
+
+# Django stuff
+*.log
+*.pot
+
+# Translations
+*.mo
+
+# Project static files
+static
+.coverage
+
+# Vim swap files
+*.swp
+
+# Coverage Reports
+*htmlcov*
+
+# Pytest Cache
+*.pytest_cache*
