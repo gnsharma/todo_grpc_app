@@ -2,7 +2,7 @@
 # source: todo.proto
 
 import sys
-_b = sys.version_info[0] < 3 and (lambda x: x) or (lambda x: x.encode('latin1'))
+_b=sys.version_info[0]<3 and (lambda x:x) or (lambda x:x.encode('latin1'))
 from google.protobuf import descriptor as _descriptor
 from google.protobuf import message as _message
 from google.protobuf import reflection as _reflection
@@ -13,384 +13,563 @@ from google.protobuf import descriptor_pb2
 _sym_db = _symbol_database.Default()
 
 
+
+
 DESCRIPTOR = _descriptor.FileDescriptor(
-    name='todo.proto',
-    package='todo',
-    syntax='proto3',
-    serialized_pb=_b('\n\ntodo.proto\x12\x04todo\"\x95\x01\n\x04Todo\x12\n\n\x02id\x18\x01 \x01(\x03\x12\x0f\n\x07\x64\x65tails\x18\x02 \x01(\t\x12!\n\x06status\x18\x03 \x01(\x0e\x32\x11.todo.Todo.Status\"M\n\x06Status\x12\x17\n\x13UNKNOWN_TODO_STATUS\x10\x00\x12\x08\n\x04TODO\x10\x01\x12\x12\n\x0eWORKINPROGRESS\x10\x02\x12\x0c\n\x08\x43OMPLETE\x10\x03\"%\n\x08TodoList\x12\x19\n\x05todos\x18\x01 \x03(\x0b\x32\n.todo.Todo\"\r\n\x0bGetTodoList\"y\n\x0c\x41\x63tionStatus\x12)\n\x06status\x18\x01 \x01(\x0e\x32\x19.todo.ActionStatus.Status\x12\x0e\n\x06\x65rrors\x18\x02 \x03(\t\".\n\x06Status\x12\x0b\n\x07UNKNOWN\x10\x00\x12\x0b\n\x07SUCCESS\x10\x01\x12\n\n\x06\x46\x41ILED\x10\x02\"R\n\x12\x43reateTodoResponse\x12\"\n\x06status\x18\x01 \x01(\x0b\x32\x12.todo.ActionStatus\x12\x18\n\x04todo\x18\x02 \x01(\x0b\x32\n.todo.Todo\"8\n\x12\x44\x65leteTodoResponse\x12\"\n\x06status\x18\x01 \x01(\x0b\x32\x12.todo.ActionStatus2\xd2\x01\n\x0bTodoService\x12\x34\n\nCreateTodo\x12\n.todo.Todo\x1a\x18.todo.CreateTodoResponse\"\x00\x12#\n\x07GetTodo\x12\n.todo.Todo\x1a\n.todo.Todo\"\x00\x12\x32\n\x0bGetAllTodos\x12\x11.todo.GetTodoList\x1a\x0e.todo.TodoList\"\x00\x12\x34\n\nDeleteTodo\x12\n.todo.Todo\x1a\x18.todo.DeleteTodoResponse\"\x00\x62\x06proto3')
+  name='todo.proto',
+  package='todo',
+  syntax='proto3',
+  serialized_pb=_b('\n\ntodo.proto\x12\x04todo\"/\n\x04User\x12\n\n\x02id\x18\x01 \x01(\x03\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\r\n\x05\x65mail\x18\x03 \x01(\t\"&\n\tUsersList\x12\x19\n\x05users\x18\x01 \x03(\x0b\x32\n.todo.User\"\n\n\x08GetUsers\"\xa6\x01\n\x04Todo\x12\n\n\x02id\x18\x01 \x01(\x03\x12\x0f\n\x07user_id\x18\x02 \x01(\x03\x12\x0f\n\x07\x64\x65tails\x18\x03 \x01(\t\x12!\n\x06status\x18\x04 \x01(\x0e\x32\x11.todo.Todo.Status\"M\n\x06Status\x12\x17\n\x13UNKNOWN_TODO_STATUS\x10\x00\x12\x08\n\x04TODO\x10\x01\x12\x12\n\x0eWORKINPROGRESS\x10\x02\x12\x0c\n\x08\x43OMPLETE\x10\x03\"%\n\x08TodoList\x12\x19\n\x05todos\x18\x01 \x03(\x0b\x32\n.todo.Todo\"y\n\x0c\x41\x63tionStatus\x12)\n\x06status\x18\x01 \x01(\x0e\x32\x19.todo.ActionStatus.Status\x12\x0e\n\x06\x65rrors\x18\x02 \x03(\t\".\n\x06Status\x12\x0b\n\x07UNKNOWN\x10\x00\x12\x0b\n\x07SUCCESS\x10\x01\x12\n\n\x06\x46\x41ILED\x10\x02\"R\n\x12\x43reateUserResponse\x12\"\n\x06status\x18\x01 \x01(\x0b\x32\x12.todo.ActionStatus\x12\x18\n\x04user\x18\x02 \x01(\x0b\x32\n.todo.User\"R\n\x12\x43reateTodoResponse\x12\"\n\x06status\x18\x01 \x01(\x0b\x32\x12.todo.ActionStatus\x12\x18\n\x04todo\x18\x02 \x01(\x0b\x32\n.todo.Todo\"4\n\x0e\x44\x65leteResponse\x12\"\n\x06status\x18\x01 \x01(\x0b\x32\x12.todo.ActionStatus2\xd5\x02\n\x0bTodoService\x12\x34\n\nCreateUser\x12\n.todo.User\x1a\x18.todo.CreateUserResponse\"\x00\x12#\n\x07GetUser\x12\n.todo.User\x1a\n.todo.User\"\x00\x12\x34\n\nCreateTodo\x12\n.todo.Todo\x1a\x18.todo.CreateTodoResponse\"\x00\x12#\n\x07GetTodo\x12\n.todo.Todo\x1a\n.todo.Todo\"\x00\x12,\n\x0cGetUserTodos\x12\n.todo.User\x1a\x0e.todo.TodoList\"\x00\x12\x30\n\nDeleteTodo\x12\n.todo.Todo\x1a\x14.todo.DeleteResponse\"\x00\x12\x30\n\nDeleteUser\x12\n.todo.User\x1a\x14.todo.DeleteResponse\"\x00\x62\x06proto3')
 )
 
 
+
 _TODO_STATUS = _descriptor.EnumDescriptor(
-    name='Status',
-    full_name='todo.Todo.Status',
-    filename=None,
-    file=DESCRIPTOR,
-    values=[
-        _descriptor.EnumValueDescriptor(
-            name='UNKNOWN_TODO_STATUS', index=0, number=0,
-            options=None,
-            type=None),
-        _descriptor.EnumValueDescriptor(
-            name='TODO', index=1, number=1,
-            options=None,
-            type=None),
-        _descriptor.EnumValueDescriptor(
-            name='WORKINPROGRESS', index=2, number=2,
-            options=None,
-            type=None),
-        _descriptor.EnumValueDescriptor(
-            name='COMPLETE', index=3, number=3,
-            options=None,
-            type=None),
-    ],
-    containing_type=None,
-    options=None,
-    serialized_start=93,
-    serialized_end=170,
+  name='Status',
+  full_name='todo.Todo.Status',
+  filename=None,
+  file=DESCRIPTOR,
+  values=[
+    _descriptor.EnumValueDescriptor(
+      name='UNKNOWN_TODO_STATUS', index=0, number=0,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='TODO', index=1, number=1,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='WORKINPROGRESS', index=2, number=2,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='COMPLETE', index=3, number=3,
+      options=None,
+      type=None),
+  ],
+  containing_type=None,
+  options=None,
+  serialized_start=211,
+  serialized_end=288,
 )
 _sym_db.RegisterEnumDescriptor(_TODO_STATUS)
 
 _ACTIONSTATUS_STATUS = _descriptor.EnumDescriptor(
-    name='Status',
-    full_name='todo.ActionStatus.Status',
-    filename=None,
-    file=DESCRIPTOR,
-    values=[
-        _descriptor.EnumValueDescriptor(
-            name='UNKNOWN', index=0, number=0,
-            options=None,
-            type=None),
-        _descriptor.EnumValueDescriptor(
-            name='SUCCESS', index=1, number=1,
-            options=None,
-            type=None),
-        _descriptor.EnumValueDescriptor(
-            name='FAILED', index=2, number=2,
-            options=None,
-            type=None),
-    ],
-    containing_type=None,
-    options=None,
-    serialized_start=301,
-    serialized_end=347,
+  name='Status',
+  full_name='todo.ActionStatus.Status',
+  filename=None,
+  file=DESCRIPTOR,
+  values=[
+    _descriptor.EnumValueDescriptor(
+      name='UNKNOWN', index=0, number=0,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='SUCCESS', index=1, number=1,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='FAILED', index=2, number=2,
+      options=None,
+      type=None),
+  ],
+  containing_type=None,
+  options=None,
+  serialized_start=404,
+  serialized_end=450,
 )
 _sym_db.RegisterEnumDescriptor(_ACTIONSTATUS_STATUS)
 
 
+_USER = _descriptor.Descriptor(
+  name='User',
+  full_name='todo.User',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='id', full_name='todo.User.id', index=0,
+      number=1, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='name', full_name='todo.User.name', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='email', full_name='todo.User.email', index=2,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=20,
+  serialized_end=67,
+)
+
+
+_USERSLIST = _descriptor.Descriptor(
+  name='UsersList',
+  full_name='todo.UsersList',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='users', full_name='todo.UsersList.users', index=0,
+      number=1, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=69,
+  serialized_end=107,
+)
+
+
+_GETUSERS = _descriptor.Descriptor(
+  name='GetUsers',
+  full_name='todo.GetUsers',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=109,
+  serialized_end=119,
+)
+
+
 _TODO = _descriptor.Descriptor(
-    name='Todo',
-    full_name='todo.Todo',
-    filename=None,
-    file=DESCRIPTOR,
-    containing_type=None,
-    fields=[
-        _descriptor.FieldDescriptor(
-            name='id', full_name='todo.Todo.id', index=0,
-            number=1, type=3, cpp_type=2, label=1,
-            has_default_value=False, default_value=0,
-            message_type=None, enum_type=None, containing_type=None,
-            is_extension=False, extension_scope=None,
-            options=None, file=DESCRIPTOR),
-        _descriptor.FieldDescriptor(
-            name='details', full_name='todo.Todo.details', index=1,
-            number=2, type=9, cpp_type=9, label=1,
-            has_default_value=False, default_value=_b("").decode('utf-8'),
-            message_type=None, enum_type=None, containing_type=None,
-            is_extension=False, extension_scope=None,
-            options=None, file=DESCRIPTOR),
-        _descriptor.FieldDescriptor(
-            name='status', full_name='todo.Todo.status', index=2,
-            number=3, type=14, cpp_type=8, label=1,
-            has_default_value=False, default_value=0,
-            message_type=None, enum_type=None, containing_type=None,
-            is_extension=False, extension_scope=None,
-            options=None, file=DESCRIPTOR),
-    ],
-    extensions=[
-    ],
-    nested_types=[],
-    enum_types=[
-        _TODO_STATUS,
-    ],
-    options=None,
-    is_extendable=False,
-    syntax='proto3',
-    extension_ranges=[],
-    oneofs=[
-    ],
-    serialized_start=21,
-    serialized_end=170,
+  name='Todo',
+  full_name='todo.Todo',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='id', full_name='todo.Todo.id', index=0,
+      number=1, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='user_id', full_name='todo.Todo.user_id', index=1,
+      number=2, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='details', full_name='todo.Todo.details', index=2,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='status', full_name='todo.Todo.status', index=3,
+      number=4, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+    _TODO_STATUS,
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=122,
+  serialized_end=288,
 )
 
 
 _TODOLIST = _descriptor.Descriptor(
-    name='TodoList',
-    full_name='todo.TodoList',
-    filename=None,
-    file=DESCRIPTOR,
-    containing_type=None,
-    fields=[
-        _descriptor.FieldDescriptor(
-            name='todos', full_name='todo.TodoList.todos', index=0,
-            number=1, type=11, cpp_type=10, label=3,
-            has_default_value=False, default_value=[],
-            message_type=None, enum_type=None, containing_type=None,
-            is_extension=False, extension_scope=None,
-            options=None, file=DESCRIPTOR),
-    ],
-    extensions=[
-    ],
-    nested_types=[],
-    enum_types=[
-    ],
-    options=None,
-    is_extendable=False,
-    syntax='proto3',
-    extension_ranges=[],
-    oneofs=[
-    ],
-    serialized_start=172,
-    serialized_end=209,
-)
-
-
-_GETTODOLIST = _descriptor.Descriptor(
-    name='GetTodoList',
-    full_name='todo.GetTodoList',
-    filename=None,
-    file=DESCRIPTOR,
-    containing_type=None,
-    fields=[
-    ],
-    extensions=[
-    ],
-    nested_types=[],
-    enum_types=[
-    ],
-    options=None,
-    is_extendable=False,
-    syntax='proto3',
-    extension_ranges=[],
-    oneofs=[
-    ],
-    serialized_start=211,
-    serialized_end=224,
+  name='TodoList',
+  full_name='todo.TodoList',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='todos', full_name='todo.TodoList.todos', index=0,
+      number=1, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=290,
+  serialized_end=327,
 )
 
 
 _ACTIONSTATUS = _descriptor.Descriptor(
-    name='ActionStatus',
-    full_name='todo.ActionStatus',
-    filename=None,
-    file=DESCRIPTOR,
-    containing_type=None,
-    fields=[
-        _descriptor.FieldDescriptor(
-            name='status', full_name='todo.ActionStatus.status', index=0,
-            number=1, type=14, cpp_type=8, label=1,
-            has_default_value=False, default_value=0,
-            message_type=None, enum_type=None, containing_type=None,
-            is_extension=False, extension_scope=None,
-            options=None, file=DESCRIPTOR),
-        _descriptor.FieldDescriptor(
-            name='errors', full_name='todo.ActionStatus.errors', index=1,
-            number=2, type=9, cpp_type=9, label=3,
-            has_default_value=False, default_value=[],
-            message_type=None, enum_type=None, containing_type=None,
-            is_extension=False, extension_scope=None,
-            options=None, file=DESCRIPTOR),
-    ],
-    extensions=[
-    ],
-    nested_types=[],
-    enum_types=[
-        _ACTIONSTATUS_STATUS,
-    ],
-    options=None,
-    is_extendable=False,
-    syntax='proto3',
-    extension_ranges=[],
-    oneofs=[
-    ],
-    serialized_start=226,
-    serialized_end=347,
+  name='ActionStatus',
+  full_name='todo.ActionStatus',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='status', full_name='todo.ActionStatus.status', index=0,
+      number=1, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='errors', full_name='todo.ActionStatus.errors', index=1,
+      number=2, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+    _ACTIONSTATUS_STATUS,
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=329,
+  serialized_end=450,
+)
+
+
+_CREATEUSERRESPONSE = _descriptor.Descriptor(
+  name='CreateUserResponse',
+  full_name='todo.CreateUserResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='status', full_name='todo.CreateUserResponse.status', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='user', full_name='todo.CreateUserResponse.user', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=452,
+  serialized_end=534,
 )
 
 
 _CREATETODORESPONSE = _descriptor.Descriptor(
-    name='CreateTodoResponse',
-    full_name='todo.CreateTodoResponse',
-    filename=None,
-    file=DESCRIPTOR,
-    containing_type=None,
-    fields=[
-        _descriptor.FieldDescriptor(
-            name='status', full_name='todo.CreateTodoResponse.status', index=0,
-            number=1, type=11, cpp_type=10, label=1,
-            has_default_value=False, default_value=None,
-            message_type=None, enum_type=None, containing_type=None,
-            is_extension=False, extension_scope=None,
-            options=None, file=DESCRIPTOR),
-        _descriptor.FieldDescriptor(
-            name='todo', full_name='todo.CreateTodoResponse.todo', index=1,
-            number=2, type=11, cpp_type=10, label=1,
-            has_default_value=False, default_value=None,
-            message_type=None, enum_type=None, containing_type=None,
-            is_extension=False, extension_scope=None,
-            options=None, file=DESCRIPTOR),
-    ],
-    extensions=[
-    ],
-    nested_types=[],
-    enum_types=[
-    ],
-    options=None,
-    is_extendable=False,
-    syntax='proto3',
-    extension_ranges=[],
-    oneofs=[
-    ],
-    serialized_start=349,
-    serialized_end=431,
+  name='CreateTodoResponse',
+  full_name='todo.CreateTodoResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='status', full_name='todo.CreateTodoResponse.status', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='todo', full_name='todo.CreateTodoResponse.todo', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=536,
+  serialized_end=618,
 )
 
 
-_DELETETODORESPONSE = _descriptor.Descriptor(
-    name='DeleteTodoResponse',
-    full_name='todo.DeleteTodoResponse',
-    filename=None,
-    file=DESCRIPTOR,
-    containing_type=None,
-    fields=[
-        _descriptor.FieldDescriptor(
-            name='status', full_name='todo.DeleteTodoResponse.status', index=0,
-            number=1, type=11, cpp_type=10, label=1,
-            has_default_value=False, default_value=None,
-            message_type=None, enum_type=None, containing_type=None,
-            is_extension=False, extension_scope=None,
-            options=None, file=DESCRIPTOR),
-    ],
-    extensions=[
-    ],
-    nested_types=[],
-    enum_types=[
-    ],
-    options=None,
-    is_extendable=False,
-    syntax='proto3',
-    extension_ranges=[],
-    oneofs=[
-    ],
-    serialized_start=433,
-    serialized_end=489,
+_DELETERESPONSE = _descriptor.Descriptor(
+  name='DeleteResponse',
+  full_name='todo.DeleteResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='status', full_name='todo.DeleteResponse.status', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=620,
+  serialized_end=672,
 )
 
+_USERSLIST.fields_by_name['users'].message_type = _USER
 _TODO.fields_by_name['status'].enum_type = _TODO_STATUS
 _TODO_STATUS.containing_type = _TODO
 _TODOLIST.fields_by_name['todos'].message_type = _TODO
 _ACTIONSTATUS.fields_by_name['status'].enum_type = _ACTIONSTATUS_STATUS
 _ACTIONSTATUS_STATUS.containing_type = _ACTIONSTATUS
+_CREATEUSERRESPONSE.fields_by_name['status'].message_type = _ACTIONSTATUS
+_CREATEUSERRESPONSE.fields_by_name['user'].message_type = _USER
 _CREATETODORESPONSE.fields_by_name['status'].message_type = _ACTIONSTATUS
 _CREATETODORESPONSE.fields_by_name['todo'].message_type = _TODO
-_DELETETODORESPONSE.fields_by_name['status'].message_type = _ACTIONSTATUS
+_DELETERESPONSE.fields_by_name['status'].message_type = _ACTIONSTATUS
+DESCRIPTOR.message_types_by_name['User'] = _USER
+DESCRIPTOR.message_types_by_name['UsersList'] = _USERSLIST
+DESCRIPTOR.message_types_by_name['GetUsers'] = _GETUSERS
 DESCRIPTOR.message_types_by_name['Todo'] = _TODO
 DESCRIPTOR.message_types_by_name['TodoList'] = _TODOLIST
-DESCRIPTOR.message_types_by_name['GetTodoList'] = _GETTODOLIST
 DESCRIPTOR.message_types_by_name['ActionStatus'] = _ACTIONSTATUS
+DESCRIPTOR.message_types_by_name['CreateUserResponse'] = _CREATEUSERRESPONSE
 DESCRIPTOR.message_types_by_name['CreateTodoResponse'] = _CREATETODORESPONSE
-DESCRIPTOR.message_types_by_name['DeleteTodoResponse'] = _DELETETODORESPONSE
+DESCRIPTOR.message_types_by_name['DeleteResponse'] = _DELETERESPONSE
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
+User = _reflection.GeneratedProtocolMessageType('User', (_message.Message,), dict(
+  DESCRIPTOR = _USER,
+  __module__ = 'todo_pb2'
+  # @@protoc_insertion_point(class_scope:todo.User)
+  ))
+_sym_db.RegisterMessage(User)
+
+UsersList = _reflection.GeneratedProtocolMessageType('UsersList', (_message.Message,), dict(
+  DESCRIPTOR = _USERSLIST,
+  __module__ = 'todo_pb2'
+  # @@protoc_insertion_point(class_scope:todo.UsersList)
+  ))
+_sym_db.RegisterMessage(UsersList)
+
+GetUsers = _reflection.GeneratedProtocolMessageType('GetUsers', (_message.Message,), dict(
+  DESCRIPTOR = _GETUSERS,
+  __module__ = 'todo_pb2'
+  # @@protoc_insertion_point(class_scope:todo.GetUsers)
+  ))
+_sym_db.RegisterMessage(GetUsers)
+
 Todo = _reflection.GeneratedProtocolMessageType('Todo', (_message.Message,), dict(
-    DESCRIPTOR=_TODO,
-    __module__='todo_pb2'
-    # @@protoc_insertion_point(class_scope:todo.Todo)
-))
+  DESCRIPTOR = _TODO,
+  __module__ = 'todo_pb2'
+  # @@protoc_insertion_point(class_scope:todo.Todo)
+  ))
 _sym_db.RegisterMessage(Todo)
 
 TodoList = _reflection.GeneratedProtocolMessageType('TodoList', (_message.Message,), dict(
-    DESCRIPTOR=_TODOLIST,
-    __module__='todo_pb2'
-    # @@protoc_insertion_point(class_scope:todo.TodoList)
-))
+  DESCRIPTOR = _TODOLIST,
+  __module__ = 'todo_pb2'
+  # @@protoc_insertion_point(class_scope:todo.TodoList)
+  ))
 _sym_db.RegisterMessage(TodoList)
 
-GetTodoList = _reflection.GeneratedProtocolMessageType('GetTodoList', (_message.Message,), dict(
-    DESCRIPTOR=_GETTODOLIST,
-    __module__='todo_pb2'
-    # @@protoc_insertion_point(class_scope:todo.GetTodoList)
-))
-_sym_db.RegisterMessage(GetTodoList)
-
 ActionStatus = _reflection.GeneratedProtocolMessageType('ActionStatus', (_message.Message,), dict(
-    DESCRIPTOR=_ACTIONSTATUS,
-    __module__='todo_pb2'
-    # @@protoc_insertion_point(class_scope:todo.ActionStatus)
-))
+  DESCRIPTOR = _ACTIONSTATUS,
+  __module__ = 'todo_pb2'
+  # @@protoc_insertion_point(class_scope:todo.ActionStatus)
+  ))
 _sym_db.RegisterMessage(ActionStatus)
 
+CreateUserResponse = _reflection.GeneratedProtocolMessageType('CreateUserResponse', (_message.Message,), dict(
+  DESCRIPTOR = _CREATEUSERRESPONSE,
+  __module__ = 'todo_pb2'
+  # @@protoc_insertion_point(class_scope:todo.CreateUserResponse)
+  ))
+_sym_db.RegisterMessage(CreateUserResponse)
+
 CreateTodoResponse = _reflection.GeneratedProtocolMessageType('CreateTodoResponse', (_message.Message,), dict(
-    DESCRIPTOR=_CREATETODORESPONSE,
-    __module__='todo_pb2'
-    # @@protoc_insertion_point(class_scope:todo.CreateTodoResponse)
-))
+  DESCRIPTOR = _CREATETODORESPONSE,
+  __module__ = 'todo_pb2'
+  # @@protoc_insertion_point(class_scope:todo.CreateTodoResponse)
+  ))
 _sym_db.RegisterMessage(CreateTodoResponse)
 
-DeleteTodoResponse = _reflection.GeneratedProtocolMessageType('DeleteTodoResponse', (_message.Message,), dict(
-    DESCRIPTOR=_DELETETODORESPONSE,
-    __module__='todo_pb2'
-    # @@protoc_insertion_point(class_scope:todo.DeleteTodoResponse)
-))
-_sym_db.RegisterMessage(DeleteTodoResponse)
+DeleteResponse = _reflection.GeneratedProtocolMessageType('DeleteResponse', (_message.Message,), dict(
+  DESCRIPTOR = _DELETERESPONSE,
+  __module__ = 'todo_pb2'
+  # @@protoc_insertion_point(class_scope:todo.DeleteResponse)
+  ))
+_sym_db.RegisterMessage(DeleteResponse)
+
 
 
 _TODOSERVICE = _descriptor.ServiceDescriptor(
-    name='TodoService',
-    full_name='todo.TodoService',
-    file=DESCRIPTOR,
+  name='TodoService',
+  full_name='todo.TodoService',
+  file=DESCRIPTOR,
+  index=0,
+  options=None,
+  serialized_start=675,
+  serialized_end=1016,
+  methods=[
+  _descriptor.MethodDescriptor(
+    name='CreateUser',
+    full_name='todo.TodoService.CreateUser',
     index=0,
+    containing_service=None,
+    input_type=_USER,
+    output_type=_CREATEUSERRESPONSE,
     options=None,
-    serialized_start=492,
-    serialized_end=702,
-    methods=[
-        _descriptor.MethodDescriptor(
-            name='CreateTodo',
-            full_name='todo.TodoService.CreateTodo',
-            index=0,
-            containing_service=None,
-            input_type=_TODO,
-            output_type=_CREATETODORESPONSE,
-            options=None,
-        ),
-        _descriptor.MethodDescriptor(
-            name='GetTodo',
-            full_name='todo.TodoService.GetTodo',
-            index=1,
-            containing_service=None,
-            input_type=_TODO,
-            output_type=_TODO,
-            options=None,
-        ),
-        _descriptor.MethodDescriptor(
-            name='GetAllTodos',
-            full_name='todo.TodoService.GetAllTodos',
-            index=2,
-            containing_service=None,
-            input_type=_GETTODOLIST,
-            output_type=_TODOLIST,
-            options=None,
-        ),
-        _descriptor.MethodDescriptor(
-            name='DeleteTodo',
-            full_name='todo.TodoService.DeleteTodo',
-            index=3,
-            containing_service=None,
-            input_type=_TODO,
-            output_type=_DELETETODORESPONSE,
-            options=None,
-        ),
-    ])
+  ),
+  _descriptor.MethodDescriptor(
+    name='GetUser',
+    full_name='todo.TodoService.GetUser',
+    index=1,
+    containing_service=None,
+    input_type=_USER,
+    output_type=_USER,
+    options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='CreateTodo',
+    full_name='todo.TodoService.CreateTodo',
+    index=2,
+    containing_service=None,
+    input_type=_TODO,
+    output_type=_CREATETODORESPONSE,
+    options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='GetTodo',
+    full_name='todo.TodoService.GetTodo',
+    index=3,
+    containing_service=None,
+    input_type=_TODO,
+    output_type=_TODO,
+    options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='GetUserTodos',
+    full_name='todo.TodoService.GetUserTodos',
+    index=4,
+    containing_service=None,
+    input_type=_USER,
+    output_type=_TODOLIST,
+    options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='DeleteTodo',
+    full_name='todo.TodoService.DeleteTodo',
+    index=5,
+    containing_service=None,
+    input_type=_TODO,
+    output_type=_DELETERESPONSE,
+    options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='DeleteUser',
+    full_name='todo.TodoService.DeleteUser',
+    index=6,
+    containing_service=None,
+    input_type=_USER,
+    output_type=_DELETERESPONSE,
+    options=None,
+  ),
+])
 _sym_db.RegisterServiceDescriptor(_TODOSERVICE)
 
 DESCRIPTOR.services_by_name['TodoService'] = _TODOSERVICE
