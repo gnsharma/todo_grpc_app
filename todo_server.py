@@ -13,8 +13,8 @@ _ONE_DAY_IN_SECONDS = 60 * 60 * 24
 class TodoServicer(todo_pb2_grpc.TodoServiceServicer):
 
     def CreateUser(self, request, context):
-        user = User(name=request.name, email=request.name)
-        user_pb2 = User_pb2(name=request.name, email=request.email)
+        user = User(id=request.id, name=request.name, email=request.name)
+        user_pb2 = User_pb2(id=request.id, name=request.name, email=request.email)
 
         try:
             session.add(user)
@@ -39,8 +39,8 @@ class TodoServicer(todo_pb2_grpc.TodoServiceServicer):
         return user_pb2
 
     def CreateTodo(self, request, context):
-        todo = Todo(details=request.details, user_id=request.user_id, status=request.status)
-        todo_pb = todo_pb2.Todo(details=request.details, user_id=request.user_id, status=request.status)
+        todo = Todo(id=request.id, details=request.details, user_id=request.user_id, status=request.status)
+        todo_pb = todo_pb2.Todo(id=request.id, details=request.details, user_id=request.user_id, status=request.status)
 
         try:
             session.add(todo)
